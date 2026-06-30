@@ -10,6 +10,7 @@ from app.database import Base, get_db
 from app.main import app
 from app.models.movie import Movie
 from app.models.user import User
+from app.services.ollama_service import OllamaService
 
 
 @pytest.fixture()
@@ -201,3 +202,26 @@ def test_movie_field_validation(client: TestClient, admin_headers: dict[str, str
     )
 
     assert response.status_code == 422
+
+
+def test_admin_create_movie_generates_missing_tags(
+    client: TestClient,
+    admin_headers: dict[str, str],
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr(
+        OllamaService,
+        "generate_tags_from_description",
+        lambda **_kwargs: ["generated", "crime"],
+    )
+    payload = movie_payload()
+    payload["tags"] = []
+
+    response = client.post(
+        "/api/v1/admin/movies",
+        json=payload,
+        headers=admin_headers,
+    )
+
+    assert response.status_code == 201
+    assert response.json()["tags"] == ["generated", "crime"]

@@ -16,6 +16,7 @@ from app.models.watch_history import WatchHistory
 from app.schemas.movie import MovieResponse
 from app.schemas.recommendation import RecommendationItem
 from app.services.movies import MovieService
+from app.services.ollama_service import OllamaService
 
 
 HYBRID_WEIGHTS = {
@@ -250,6 +251,20 @@ class RecommendationService:
                 popularity=normalise_value(movie.popularity_score, max_popularity),
                 freshness=cls._freshness_score(movie),
             )
+            fallback_reason = reason_builder(movie, scores)
+            # The deterministic recommendation score is finalized before Ollama
+            # is asked for wording. Ollama can improve prose, but not ranking.
+            reason = OllamaService.generate_recommendation_reason(
+                movie=movie,
+                fallback_reason=fallback_reason,
+                signals={
+                    "content_score": scores.content,
+                    "collaborative_score": scores.collaborative,
+                    "rating_score": scores.rating,
+                    "popularity_score": scores.popularity,
+                    "freshness_score": scores.freshness,
+                },
+            )
             recommendations.append(
                 RecommendationItem(
                     movie=MovieResponse.model_validate(movie),
@@ -259,7 +274,7 @@ class RecommendationService:
                     rating_score=round(scores.rating, 4),
                     popularity_score=round(scores.popularity, 4),
                     freshness_score=round(scores.freshness, 4),
-                    reason=reason_builder(movie, scores),
+                    reason=reason,
                 )
             )
 

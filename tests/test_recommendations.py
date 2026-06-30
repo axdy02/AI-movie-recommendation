@@ -13,6 +13,19 @@ from app.models.rating import Rating
 from app.models.user import User
 from app.models.user_preference import UserPreference
 from app.models.watch_history import WatchHistory
+from app.services.ollama_service import OllamaService
+
+
+@pytest.fixture(autouse=True)
+def use_rule_based_reasons(monkeypatch: pytest.MonkeyPatch) -> None:
+    def fallback_reason(**kwargs: object) -> str:
+        return str(kwargs["fallback_reason"])
+
+    monkeypatch.setattr(
+        OllamaService,
+        "generate_recommendation_reason",
+        fallback_reason,
+    )
 
 
 @pytest.fixture()

@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 
 from app.models.movie import Movie
 from app.schemas.movie import MovieCreate, MovieUpdate
+from app.services.ollama_service import OllamaService
 
 
 class MovieService:
@@ -86,7 +87,9 @@ class MovieService:
 
     @staticmethod
     def create_movie(db: Session, payload: MovieCreate) -> Movie:
-        movie = Movie(**payload.model_dump())
+        movie_data = payload.model_dump()
+        MovieService._fill_missing_tags(movie_data)
+        movie = Movie(**movie_data)
         db.add(movie)
         db.commit()
         db.refresh(movie)
@@ -101,6 +104,17 @@ class MovieService:
     ) -> Movie:
         movie = cls.get_movie_or_404(db, movie_id)
         update_data = payload.model_dump(exclude_unset=True)
+        if "tags" not in update_data:
+            seed_data = {
+                "title": update_data.get("title", movie.title),
+                "description": update_data.get("description", movie.description),
+                "tags": movie.tags,
+            }
+            if not seed_data["tags"]:
+                cls._fill_missing_tags(seed_data)
+                if seed_data["tags"]:
+                    update_data["tags"] = seed_data["tags"]
+
         for field, value in update_data.items():
             setattr(movie, field, value)
 
@@ -133,4 +147,14 @@ class MovieService:
         return sorted(
             movies_by_id.values(),
             key=lambda movie: (-movie.popularity_score, movie.title),
+        )
+
+    @staticmethod
+    def _fill_missing_tags(movie_data: dict[str, object]) -> None:
+        if movie_data.get("tags") or not movie_data.get("description"):
+            return
+
+        movie_data["tags"] = OllamaService.generate_tags_from_description(
+            title=str(movie_data.get("title") or ""),
+            description=str(movie_data.get("description") or ""),
         )

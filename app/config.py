@@ -17,6 +17,9 @@ class Settings(BaseSettings):
     secret_key: str = "change-this-secret"
     jwt_algorithm: str = "HS256"
     access_token_expire_minutes: int = 30
+    ollama_model: str = "llama3.1"
+    ollama_base_url: str = "http://localhost:11434"
+    ollama_timeout_seconds: float = 1.5
 
     model_config = SettingsConfigDict(
         env_file=".env",
