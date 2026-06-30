@@ -1,8 +1,8 @@
 # AI Movie Recommendation API
 
-Production-style FastAPI backend skeleton for an AI movie recommendation system.
+Production-style FastAPI backend for an AI movie recommendation system.
 
-This project intentionally has no frontend and no recommendation logic yet. The only implemented endpoint is the health check.
+This project intentionally has no frontend.
 
 ## Stack
 
@@ -101,4 +101,78 @@ Apply migrations:
 
 ```bash
 alembic upgrade head
+```
+
+## Seed Data
+
+The project includes sample data for testing recommendations:
+
+- 20 movies across action, sci-fi, thriller, crime, romance, comedy, horror,
+  sports, fantasy, adventure, musical, and drama
+- 5 users
+- overlapping watch histories
+- ratings and liked/disliked signals
+- user preferences for cold-start recommendation tests
+
+Run migrations first, then seed the database:
+
+```bash
+alembic upgrade head
+python seed.py
+```
+
+All seeded users use this password:
+
+```text
+password123
+```
+
+Good test users:
+
+- `maya@example.com`
+- `leo@example.com`
+- `nora@example.com`
+
+These three users intentionally overlap on action, sci-fi, thriller, and crime
+movies so collaborative filtering is easy to observe.
+
+## Testing Recommendations
+
+Start the API:
+
+```bash
+uvicorn main:app --reload
+```
+
+Log in:
+
+```bash
+curl -X POST http://localhost:8000/api/v1/auth/login \
+  -H "Content-Type: application/json" \
+  -d "{\"email\":\"maya@example.com\",\"password\":\"password123\"}"
+```
+
+Use the returned bearer token:
+
+```bash
+curl http://localhost:8000/api/v1/recommendations/me \
+  -H "Authorization: Bearer <access_token>"
+```
+
+Useful endpoints:
+
+```text
+GET /api/v1/recommendations/me
+GET /api/v1/recommendations/similar-users
+GET /api/v1/recommendations/trending
+GET /api/v1/recommendations/because-you-watched/{movie_id}
+```
+
+`/recommendations/similar-users` should clearly recommend movies watched or
+liked by users with overlapping action/sci-fi/crime histories.
+
+## Run Tests
+
+```bash
+pytest -q
 ```
