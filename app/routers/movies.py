@@ -21,6 +21,35 @@ def list_movies(
     return [MovieResponse.model_validate(movie) for movie in movies]
 
 
+@router.get("/search", response_model=list[MovieResponse])
+def search_movies(
+    q: str = Query(min_length=1),
+    db: Session = Depends(get_db),
+    _current_user: User = Depends(get_current_user),
+    offset: int = Query(default=0, ge=0),
+    limit: int = Query(default=50, ge=1, le=100),
+) -> list[MovieResponse]:
+    movies = MovieService.search_movies(db, query=q, offset=offset, limit=limit)
+    return [MovieResponse.model_validate(movie) for movie in movies]
+
+
+@router.get("/genre/{genre}", response_model=list[MovieResponse])
+def list_movies_by_genre(
+    genre: str,
+    db: Session = Depends(get_db),
+    _current_user: User = Depends(get_current_user),
+    offset: int = Query(default=0, ge=0),
+    limit: int = Query(default=50, ge=1, le=100),
+) -> list[MovieResponse]:
+    movies = MovieService.list_movies_by_genre(
+        db,
+        genre=genre,
+        offset=offset,
+        limit=limit,
+    )
+    return [MovieResponse.model_validate(movie) for movie in movies]
+
+
 @router.get("/{movie_id}", response_model=MovieResponse)
 def get_movie(
     movie_id: int,

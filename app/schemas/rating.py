@@ -5,7 +5,6 @@ from pydantic import BaseModel, ConfigDict, Field
 
 
 class RatingBase(BaseModel):
-    user_id: int
     movie_id: int
     value: float = Field(ge=0, le=5)
     status: Literal["liked", "disliked"] | None = None
@@ -22,6 +21,7 @@ class RatingUpdate(BaseModel):
 
 class RatingResponse(RatingBase):
     id: int
+    user_id: int
     created_at: datetime
     updated_at: datetime
 

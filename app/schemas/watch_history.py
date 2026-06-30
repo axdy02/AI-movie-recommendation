@@ -4,7 +4,6 @@ from pydantic import BaseModel, ConfigDict, Field
 
 
 class WatchHistoryCreate(BaseModel):
-    user_id: int
     movie_id: int
     watched_at: datetime | None = None
     watch_duration_seconds: int = Field(default=0, ge=0)
