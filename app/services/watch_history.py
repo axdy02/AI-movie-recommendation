@@ -1,0 +1,2 @@
+class WatchHistoryService:
+    pass
