@@ -2,11 +2,13 @@ from __future__ import annotations
 
 from datetime import datetime, timezone
 
-from sqlalchemy import DateTime, ForeignKey, Integer
+from sqlalchemy import DateTime, ForeignKey, Integer, JSON
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database import Base
+
+json_list_type = JSON().with_variant(JSONB, "postgresql")
 
 
 def utc_now() -> datetime:
@@ -23,13 +25,17 @@ class UserPreference(Base):
         nullable=False,
     )
     preferred_genres: Mapped[list[str]] = mapped_column(
-        JSONB,
+        json_list_type,
         default=list,
         nullable=False,
     )
-    preferred_tags: Mapped[list[str]] = mapped_column(JSONB, default=list, nullable=False)
+    preferred_tags: Mapped[list[str]] = mapped_column(
+        json_list_type,
+        default=list,
+        nullable=False,
+    )
     preferred_languages: Mapped[list[str]] = mapped_column(
-        JSONB,
+        json_list_type,
         default=list,
         nullable=False,
     )
