@@ -9,4 +9,5 @@ venv/
 .ruff_cache/
 dist/
 build/
+node_modules/
 *.egg-info/

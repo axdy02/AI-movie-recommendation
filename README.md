@@ -358,6 +358,72 @@ Run tests:
 pytest -q
 ```
 
+## How To Run The Frontend
+
+The React frontend is in the `src/` folder and uses Vite, Tailwind CSS, Axios,
+React Router, Recharts, and Framer Motion.
+
+Install frontend dependencies:
+
+```bash
+npm install
+```
+
+Create or update `.env` with the backend URL:
+
+```env
+VITE_API_BASE_URL="http://localhost:8000"
+VITE_USE_MOCKS="false"
+```
+
+Start the frontend:
+
+```bash
+npm run dev
+```
+
+The app will run at:
+
+```text
+http://localhost:5173
+```
+
+If the backend is unavailable and you want a UI-only demo, set:
+
+```env
+VITE_USE_MOCKS="true"
+```
+
+Mock mode is isolated in `src/api/mockApi.js`; final pages still call the same
+API service functions used for real backend integration.
+
+Expected frontend API coverage:
+
+- `POST /api/v1/auth/register`
+- `POST /api/v1/auth/login`
+- `GET /api/v1/auth/me`
+- `GET /api/v1/movies`
+- `GET /api/v1/movies/{movie_id}`
+- `GET /api/v1/movies/search?q=`
+- `GET /api/v1/movies/genre/{genre}`
+- `POST /api/v1/watch-history`
+- `GET /api/v1/watch-history/me`
+- `POST /api/v1/ratings`
+- `GET /api/v1/ratings/me`
+- `GET /api/v1/recommendations/me`
+- `GET /api/v1/recommendations/because-you-watched/{movie_id}`
+- `GET /api/v1/recommendations/similar-users`
+- `GET /api/v1/recommendations/trending`
+- `POST /api/v1/admin/movies`
+- `PUT /api/v1/admin/movies/{movie_id}`
+- `DELETE /api/v1/admin/movies/{movie_id}`
+- `GET /api/v1/admin/movies`
+- `GET /api/v1/admin/movies/{movie_id}`
+
+The current backend does not expose user-preference or admin-wide analytics
+routes yet. The frontend keeps preferences locally and derives catalog analytics
+from admin movie data until those endpoints are added.
+
 ## Seed Data
 
 `seed.py` creates:

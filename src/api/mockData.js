@@ -1,0 +1,262 @@
+export const mockMovies = [
+  {
+    id: 1,
+    title: "Neon Pursuit",
+    description:
+      "A courier races through a cyberpunk city after stealing evidence from a crime syndicate.",
+    genres: ["action", "sci fi", "thriller"],
+    tags: ["cyberpunk", "crime", "chase", "conspiracy"],
+    poster_url:
+      "https://images.unsplash.com/photo-1535016120720-40c646be5580?auto=format&fit=crop&w=700&q=80",
+    rating: 4.7,
+    release_year: 2022,
+    language: "english",
+    cast: ["Maya Chen", "Rafael Stone"],
+    duration: 6900,
+    popularity_score: 96,
+    created_at: "2026-06-30T10:00:00Z",
+    updated_at: "2026-06-30T10:00:00Z",
+  },
+  {
+    id: 2,
+    title: "Shadow Protocol",
+    description:
+      "An ex-agent uncovers a covert operation linking assassins, hackers, and stolen identities.",
+    genres: ["action", "thriller"],
+    tags: ["spy", "assassin", "conspiracy", "crime"],
+    poster_url:
+      "https://images.unsplash.com/photo-1518709268805-4e9042af2176?auto=format&fit=crop&w=700&q=80",
+    rating: 4.5,
+    release_year: 2020,
+    language: "english",
+    cast: ["Elena Cross", "Jonah Vale"],
+    duration: 7200,
+    popularity_score: 91,
+    created_at: "2026-06-30T10:00:00Z",
+    updated_at: "2026-06-30T10:00:00Z",
+  },
+  {
+    id: 3,
+    title: "Quantum Heist",
+    description:
+      "A crew uses unstable time technology to rob a vault before a rival corporation can erase them.",
+    genres: ["sci fi", "action"],
+    tags: ["time travel", "heist", "team", "technology"],
+    poster_url:
+      "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=700&q=80",
+    rating: 4.6,
+    release_year: 2021,
+    language: "english",
+    cast: ["Nora Vale", "Isaac Kim"],
+    duration: 7080,
+    popularity_score: 93,
+    created_at: "2026-06-30T10:00:00Z",
+    updated_at: "2026-06-30T10:00:00Z",
+  },
+  {
+    id: 4,
+    title: "Crimson Streets",
+    description:
+      "Two detectives chase a ruthless crime family through a city split by corruption.",
+    genres: ["crime", "thriller"],
+    tags: ["detective", "crime", "corruption", "noir"],
+    poster_url:
+      "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=700&q=80",
+    rating: 4.4,
+    release_year: 2019,
+    language: "english",
+    cast: ["Ava Brooks", "Miles Hart"],
+    duration: 6600,
+    popularity_score: 88,
+    created_at: "2026-06-30T10:00:00Z",
+    updated_at: "2026-06-30T10:00:00Z",
+  },
+  {
+    id: 5,
+    title: "Orbital Dawn",
+    description:
+      "Astronauts stranded near Jupiter discover a signal that may be humanity's first alien contact.",
+    genres: ["sci fi", "drama"],
+    tags: ["space", "alien contact", "survival", "mystery"],
+    poster_url:
+      "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=700&q=80",
+    rating: 4.3,
+    release_year: 2023,
+    language: "english",
+    cast: ["Leah Novak", "Samir Patel"],
+    duration: 7500,
+    popularity_score: 86,
+    created_at: "2026-06-30T10:00:00Z",
+    updated_at: "2026-06-30T10:00:00Z",
+  },
+  {
+    id: 6,
+    title: "Laugh Track Love",
+    description:
+      "Two rival sitcom writers accidentally become roommates while competing for the same showrunner job.",
+    genres: ["comedy", "romance"],
+    tags: ["workplace", "roommates", "writers", "rivals"],
+    poster_url:
+      "https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=700&q=80",
+    rating: 3.9,
+    release_year: 2020,
+    language: "english",
+    cast: ["Mina Ray", "Leo Finch"],
+    duration: 5940,
+    popularity_score: 68,
+    created_at: "2026-06-30T10:00:00Z",
+    updated_at: "2026-06-30T10:00:00Z",
+  },
+  {
+    id: 7,
+    title: "Moonlit Raga",
+    description:
+      "A classical singer and a street musician bridge family expectations through an unlikely collaboration.",
+    genres: ["musical", "romance"],
+    tags: ["music", "family", "collaboration", "tradition"],
+    poster_url:
+      "https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=700&q=80",
+    rating: 4.3,
+    release_year: 2020,
+    language: "hindi",
+    cast: ["Anika Rao", "Dev Malhotra"],
+    duration: 7200,
+    popularity_score: 77,
+    created_at: "2026-06-30T10:00:00Z",
+    updated_at: "2026-06-30T10:00:00Z",
+  },
+  {
+    id: 8,
+    title: "Silent Jury",
+    description:
+      "A defense attorney finds the jury in a high-profile murder trial is being blackmailed.",
+    genres: ["crime", "drama", "thriller"],
+    tags: ["courtroom", "blackmail", "murder", "justice"],
+    poster_url:
+      "https://images.unsplash.com/photo-1589578527966-fdac0f44566c?auto=format&fit=crop&w=700&q=80",
+    rating: 4.5,
+    release_year: 2020,
+    language: "english",
+    cast: ["Nadia Cole", "Peter Voss"],
+    duration: 7140,
+    popularity_score: 89,
+    created_at: "2026-06-30T10:00:00Z",
+    updated_at: "2026-06-30T10:00:00Z",
+  },
+  {
+    id: 9,
+    title: "Archive 7",
+    description:
+      "Investigators reopen seven cold cases after a warehouse fire reveals a pattern of disappearances.",
+    genres: ["crime", "mystery"],
+    tags: ["cold case", "investigation", "disappearance", "archive"],
+    poster_url:
+      "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=700&q=80",
+    rating: 4.4,
+    release_year: 2021,
+    language: "english",
+    cast: ["Mara Blake", "Ian Frost"],
+    duration: 6840,
+    popularity_score: 85,
+    created_at: "2026-06-30T10:00:00Z",
+    updated_at: "2026-06-30T10:00:00Z",
+  },
+  {
+    id: 10,
+    title: "Solar Tide",
+    description:
+      "Ocean engineers race to stop a solar-powered storm system from flooding coastal megacities.",
+    genres: ["sci fi", "adventure"],
+    tags: ["climate", "ocean", "technology", "disaster"],
+    poster_url:
+      "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=700&q=80",
+    rating: 4.0,
+    release_year: 2024,
+    language: "english",
+    cast: ["Ivy Stone", "Malik Reed"],
+    duration: 6960,
+    popularity_score: 84,
+    created_at: "2026-06-30T10:00:00Z",
+    updated_at: "2026-06-30T10:00:00Z",
+  },
+];
+
+export const mockUsers = [
+  {
+    id: 1,
+    email: "admin@example.com",
+    password: "password123",
+    full_name: "Admin User",
+    role: "admin",
+    is_active: true,
+    created_at: "2026-06-30T10:00:00Z",
+    updated_at: "2026-06-30T10:00:00Z",
+  },
+  {
+    id: 2,
+    email: "maya@example.com",
+    password: "password123",
+    full_name: "Maya Action Fan",
+    role: "user",
+    is_active: true,
+    created_at: "2026-06-30T10:00:00Z",
+    updated_at: "2026-06-30T10:00:00Z",
+  },
+];
+
+export const mockWatchHistory = [
+  {
+    id: 1,
+    user_id: 2,
+    movie_id: 1,
+    watched_at: "2026-06-21T10:00:00Z",
+    watch_duration_seconds: 6400,
+    completion_percentage: 96,
+    created_at: "2026-06-21T10:00:00Z",
+  },
+  {
+    id: 2,
+    user_id: 2,
+    movie_id: 2,
+    watched_at: "2026-06-22T10:00:00Z",
+    watch_duration_seconds: 6100,
+    completion_percentage: 89,
+    created_at: "2026-06-22T10:00:00Z",
+  },
+  {
+    id: 3,
+    user_id: 2,
+    movie_id: 3,
+    watched_at: "2026-06-23T10:00:00Z",
+    watch_duration_seconds: 6500,
+    completion_percentage: 94,
+    created_at: "2026-06-23T10:00:00Z",
+  },
+];
+
+export const mockRatings = [
+  {
+    id: 1,
+    user_id: 2,
+    movie_id: 1,
+    value: 5,
+    status: "liked",
+    created_at: "2026-06-21T10:00:00Z",
+    updated_at: "2026-06-21T10:00:00Z",
+  },
+  {
+    id: 2,
+    user_id: 2,
+    movie_id: 2,
+    value: 4.6,
+    status: "liked",
+    created_at: "2026-06-22T10:00:00Z",
+    updated_at: "2026-06-22T10:00:00Z",
+  },
+];
+
+export const defaultPreferences = {
+  preferred_genres: ["action", "sci fi", "thriller"],
+  preferred_tags: ["crime", "technology", "conspiracy"],
+  preferred_languages: ["english"],
+};
